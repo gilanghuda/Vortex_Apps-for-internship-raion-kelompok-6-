@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Beranda.BerandaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:background="#F5F5F5"
+            android:elevation="8dp">
+
+            <ImageView
+                android:id="@+id/lg_vortex"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/vortexlogo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_notif"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/notif_icon"
+                android:contentDescription="button notif"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_message" />
+
+            <ImageButton
+                android:id="@+id/btn_message"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/message_icon"
+                android:contentDescription="button message"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#F5F5F5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_beranda"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_hai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/work_sans_bold"
+                        android:text="Hai  Nova!"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/tv_subHai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/work_sans_light"
+                        android:text="Selamat datang di aplikasi vortex Nova!"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/imgslider"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="22dp"></androidx.viewpager2.widget.ViewPager2>
+
+                    <LinearLayout
+                        android:id="@+id/slideDotLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/imgslider" />
+
+                </LinearLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/grid_beranda"
+                    android:columnCount="3"
+                    android:paddingLeft="40dp"
+                    android:paddingTop="17dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="17dp"
+                    android:rowCount="1">
+
+
+                    <ImageButton
+                        android:id="@+id/btn_konsultasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/btn_konsultasi"
+                        android:contentDescription="button konsultasi" />
+
+                    <ImageButton
+                        android:id="@+id/btn_pembukuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginRight="55dp"
+                        android:background="@drawable/btn_pembukuan"
+                        android:contentDescription="button pembukuan" />
+
+                    <ImageButton
+                        android:id="@+id/btn_terkini"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/btn_terkini"
+                        android:contentDescription="button terkini" />
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/tv_ikutanyuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/work_sans_bold"
+                    android:text="Ikutan Yuk!"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_subikutanyuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:text="Lorem ipsum dolor sit amet consectetur. Dolor interdum odio quam sed aliquam. Lorem ipsum dolor sit amet consectetur. " />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_beranda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="22dp"
+                    android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</FrameLayout>
