@@ -81,10 +81,21 @@ class BerandaFragment : Fragment() {
         binding.rvBeranda.adapter =  rowBerandaAdapter
         binding.rvBeranda.isNestedScrollingEnabled = false
 
+        rowBerandaAdapter.setOnItemClickListener(object : RowBerandaAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {
+                val intentdetail = Intent(requireContext(), DetailRowBeranda::class.java)
+                startActivity(intentdetail)
+            }
+        })
+
 
         binding.btnTerkini.setOnClickListener{
             val intentterkini = Intent(requireContext(), TerkiniActivity::class.java)
             startActivity(intentterkini)
+        }
+        binding.btnKonsultasi.setOnClickListener {
+            val intentkonsultasi = Intent(requireContext(), KonsultasiActivity::class.java)
+            startActivity(intentkonsultasi)
         }
         return binding.root
     }
@@ -96,20 +107,19 @@ class BerandaFragment : Fragment() {
     }
 
     fun addListBerandaRow(){
-        var brndrow = RowBerandaItem(R.drawable.owi, "Lorem Ipsum 1", "Lorem ipsum dolor sit amet consectetur. Dolor interdum odio quam sed aliquam.")
+        var brndrow = RowBerandaItem(R.drawable.iv_rowberanda1, "UMKM SUMMIT 2024", "Program yang diorganisir oleh OMG/ obsesi Media Group dari tah...", " Obsesi Media Group", "   07 Maret 2024   ", "    \uD83C\uDF9F Hybrid   ")
         berandarowlist.add(brndrow)
 
-        brndrow = RowBerandaItem(R.drawable.megachan, "Lorem Ipsum 2", "Lorem ipsum dolor sit amet consectetur. Dolor interdum odio quam sed aliquam.")
+        brndrow = RowBerandaItem(R.drawable.iv_rowberanda2, "Wirausaha Muda Mandiri", "Program tanggung jawab sosial (TJSL) utama Bank Mandiri yang t...", "Bank Mandiri", "   19 Maret 2024   ", "   \uD83D\uDCBC Offline   ")
         berandarowlist.add(brndrow)
 
-        brndrow = RowBerandaItem(R.drawable.owi, "Lorem Ipsum 3", "Lorem ipsum dolor sit amet consectetur. Dolor interdum odio quam sed aliquam.")
+        brndrow = RowBerandaItem(R.drawable.iv_rowberanda3, "Enterpreneur Financial", "EFF, program kolaborasi antara kementerian koperasi & SMEs dengan...", "Kementerian Koperasi", "   7 Februari 2024   ","   \uD83C\uDF9F Hybrid   " )
         berandarowlist.add(brndrow)
 
-        brndrow = RowBerandaItem(R.drawable.megachan, "Lorem Ipsum 4", "Lorem ipsum dolor sit amet consectetur. Dolor interdum odio quam sed aliquam.")
+        brndrow = RowBerandaItem(R.drawable.iv_rowberanda4, "Kurasi UMKM 2024", "Program tanggung jawab sosial (TJSL) utama Bank Mandiri yang tel...", "Bank Sumsel", "   20 Januari 2024   ", "   \uD83D\uDCBB Online   ")
         berandarowlist.add(brndrow)
 
-        brndrow = RowBerandaItem(R.drawable.owi, "Lorem Ipsum 5", "Lorem ipsum dolor sit amet consectetur. Dolor interdum odio quam sed aliquam.")
-        berandarowlist.add(brndrow)
+
     }
     override fun onDestroy() {
         super.onDestroy()

@@ -1,8 +1,10 @@
 package com.example.vortex.Beranda
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,8 +13,17 @@ import com.bumptech.glide.Glide
 import com.example.vortex.R
 
 
-class ImageAdapter : ListAdapter<ImageItem, ImageAdapter.ViewHolder>(DiffCallback()){
+class ImageAdapter: ListAdapter<ImageItem, ImageAdapter.ViewHolder>(DiffCallback()){
 
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    private var mListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
+    }
     class DiffCallback : DiffUtil.ItemCallback<ImageItem>(){
         override fun areItemsTheSame(oldItem: ImageItem, newItem: ImageItem): Boolean {
             return oldItem.drawableResId == newItem.drawableResId
@@ -23,8 +34,20 @@ class ImageAdapter : ListAdapter<ImageItem, ImageAdapter.ViewHolder>(DiffCallbac
         }
 
     }
-    class ViewHolder(iteView: View): RecyclerView.ViewHolder(iteView){
+    inner class ViewHolder(iteView: View): RecyclerView.ViewHolder(iteView){
         private val imageView = iteView.findViewById<ImageView>(R.id.imageforslider)
+
+        init {
+
+            itemView.setOnClickListener {
+                mListener?.let {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        it.onItemClick(position)
+                    }
+                }
+            }
+        }
 
         fun bindData(item: ImageItem) {
             Glide.with(itemView)
@@ -44,5 +67,6 @@ class ImageAdapter : ListAdapter<ImageItem, ImageAdapter.ViewHolder>(DiffCallbac
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val imageItem = getItem(position)
         holder.bindData(imageItem)
+
     }
 }

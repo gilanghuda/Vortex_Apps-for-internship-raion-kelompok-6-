@@ -21,8 +21,8 @@
             <ImageView
                 android:id="@+id/lg_vortex"
                 android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="18dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/vortexlogo"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -30,8 +30,8 @@
 
             <ImageButton
                 android:id="@+id/btn_notif"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/notif_icon"
@@ -41,8 +41,8 @@
 
             <ImageButton
                 android:id="@+id/btn_message"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/message_icon"
@@ -86,7 +86,7 @@
                         android:layout_marginStart="22dp"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/work_sans_light"
-                        android:text="Selamat datang di aplikasi vortex Nova!"
+                        android:text="Selamat Datang!"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -97,7 +97,8 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="22dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="22dp"></androidx.viewpager2.widget.ViewPager2>
+                        android:layout_marginEnd="22dp"
+                        android:clickable="false"></androidx.viewpager2.widget.ViewPager2>
 
                     <LinearLayout
                         android:id="@+id/slideDotLL"
@@ -111,7 +112,7 @@
                 </LinearLayout>
 
                 <GridLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="364dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="22dp"
@@ -173,7 +174,7 @@
                     android:layout_marginStart="22dp"
                     android:layout_marginEnd="22dp"
                     android:fontFamily="@font/work_sans_medium"
-                    android:text="Lorem ipsum dolor sit amet consectetur. Dolor interdum odio quam sed aliquam. Lorem ipsum dolor sit amet consectetur. " />
+                    android:text="Intip Jadwal Event Menarik 🔎" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_beranda"

@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Vortex"
         tools:targetApi="31">
         <activity
+            android:name=".Beranda.DetailRowBeranda"
+            android:exported="false" />
+        <activity
+            android:name=".Beranda.KonsultasiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Beranda.DetailTerkini"
+            android:exported="false" />
+        <activity
             android:name=".Beranda.TerkiniActivity"
             android:exported="false" />
         <activity

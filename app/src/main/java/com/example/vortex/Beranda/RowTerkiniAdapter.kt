@@ -21,6 +21,7 @@ class RowTerkiniAdapter constructor(private val getActivity: TerkiniActivity,
         holder.tvterkinirow.text = terkinirow[position].tv_terkinirow
         holder.tvsubterkinirow.text = terkinirow[position].tv_subterkinirow
         holder.tvterkinidate.text = terkinirow[position].tv_terkinidate
+        holder.tvroleterkini.text = terkinirow[position].tv_roleterkinirow
         holder.ivterkinirow.setImageResource(terkinirow[position].drawableResId)
 
 
@@ -33,6 +34,7 @@ class RowTerkiniAdapter constructor(private val getActivity: TerkiniActivity,
         val tvterkinirow: TextView = itemView.findViewById(R.id.tv_terkinirow)
         val tvsubterkinirow: TextView = itemView.findViewById(R.id.tv_subterkinirow)
         val tvterkinidate: TextView =  itemView.findViewById(R.id.tv_terkinidate)
+        val tvroleterkini: TextView = itemView.findViewById(R.id.tv_roleterkinirow)
         val ivterkinirow: ImageView = itemView.findViewById(R.id.iv_terkinirow)
         val cardViewTerkiniRow: CardView =  itemView.findViewById(R.id.cardViewTerkiniRow)
     }

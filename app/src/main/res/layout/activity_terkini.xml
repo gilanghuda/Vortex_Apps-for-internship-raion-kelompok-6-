@@ -36,7 +36,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
                 android:contentDescription="button back"
-                android:src="@drawable/baseline_arrow_back_ios_new_24"
+                android:background="@drawable/btn_back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -80,7 +80,14 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.19" />
+                        app:layout_constraintVertical_bias="0.19"
+                        android:contentDescription="slider"
+                        android:clickable="true">
+                    </androidx.viewpager2.widget.ViewPager2>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"></LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/slideDotLL"
@@ -101,7 +108,54 @@
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp">
+
+
+                    <ImageButton
+                        android:id="@+id/btn_terkiniSemuaTopik"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_terkinisemuatopik"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="btn semua topik"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_terkiniUmkm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_terkiniumkm"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="btn umkm"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_terkiniInvestasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_terkiniinvestasi"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="btn investasi"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_terkiniKeuangan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_terkinikeuangan"
+                        android:contentDescription="btn keuangan"
+                        />
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_terkini"
@@ -110,7 +164,7 @@
                     android:layout_marginStart="22dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="22dp"
-                    android:nestedScrollingEnabled="false"/>
+                    android:nestedScrollingEnabled="false" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
