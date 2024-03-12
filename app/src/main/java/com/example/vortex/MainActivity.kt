@@ -1,9 +1,10 @@
 package com.example.vortex
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.vortex.Beranda.BerandaFragment
+import com.example.vortex.Koneksi.KoneksiFrag
 import com.example.vortex.Profil.ProfilFragment
 import com.example.vortex.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
 
                 R.id.bn_beranda -> replaceFragment(BerandaFragment())
-                R.id.bn_koneksi -> replaceFragment(KoneksiFragment())
+                R.id.bn_koneksi -> replaceFragment(KoneksiFrag())
                 R.id.bn_profil -> replaceFragment(ProfilFragment())
 
                 else ->{

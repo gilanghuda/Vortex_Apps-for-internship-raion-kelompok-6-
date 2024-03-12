@@ -4,77 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".KoneksiFragment">
+    tools:context=".Koneksi.KoneksiFrag">
 
-    <LinearLayout
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/koneksicomposeView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="89dp"
-            android:background="#F5F5F5"
-            android:elevation="8dp">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="88dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="52dp"
-                android:src="@drawable/btn_filter"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="280dp">
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="397dp"
-                android:layout_height="372dp"
-                android:layout_marginStart="76dp"
-                android:layout_marginBottom="16dp"
-                android:src="@drawable/bg_koneksi2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="266dp"
-                android:layout_height="184dp"
-                android:layout_marginEnd="152dp"
-                android:src="@drawable/bg_koneksi1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_temukanpartner"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/work_sans_medium"
-                android:text="Temukan
-                Partner Bisnis Anda !"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_rekomendasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="44dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
 </FrameLayout>

@@ -1,4 +1,4 @@
-package com.example.composeprofile
+package com.example.vortex.Profil
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -38,6 +38,7 @@ import com.example.vortex.R
 
 @Composable
 fun ProfileScreen() {
+
     Column (
         modifier = Modifier.fillMaxSize()
     ){
