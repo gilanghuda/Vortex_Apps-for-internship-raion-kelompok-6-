@@ -97,6 +97,10 @@ class BerandaFragment : Fragment() {
             val intentkonsultasi = Intent(requireContext(), KonsultasiActivity::class.java)
             startActivity(intentkonsultasi)
         }
+        binding.btnPembukuan.setOnClickListener {
+            val intentpembukuan = Intent(requireContext(), PembukuanActivity::class.java)
+            startActivity(intentpembukuan)
+        }
         return binding.root
     }
 

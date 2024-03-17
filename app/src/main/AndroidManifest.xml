@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Vortex"
         tools:targetApi="31">
         <activity
+            android:name=".Beranda.TambahPembukuan"
+            android:exported="false" />
+        <activity
+            android:name=".Beranda.InvoiceKonsultasi"
+            android:exported="false" />
+        <activity
+            android:name=".Beranda.KonsultasiKonfirmasi"
+            android:exported="false" />
+        <activity
+            android:name=".Beranda.SplashKonsultasi"
+            android:exported="false" />
+        <activity
+            android:name=".Beranda.bottomSheetKonsultasi"
+            android:exported="false" />
+        <activity
+            android:name=".Beranda.PembukuanActivity"
+            android:exported="false" />
+        <activity
             android:name=".Beranda.DetailRowBeranda"
             android:exported="false" />
         <activity

@@ -50,7 +50,6 @@ class RowBerandaAdapter constructor(private val getFragment: BerandaFragment,
         val cardViewBerandaRow: CardView =  itemView.findViewById(R.id.cardViewBerandaRow)
 
         init {
-
             itemView.setOnClickListener {
                 mListener?.let {
                     val position = adapterPosition

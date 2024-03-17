@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navbar"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"
+        app:itemTextColor="#2984FF"
+        app:itemIconTint="#2984FF"
         android:background="@drawable/bg_navbar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
