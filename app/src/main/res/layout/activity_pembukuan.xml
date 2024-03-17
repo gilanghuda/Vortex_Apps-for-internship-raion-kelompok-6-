@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Beranda.PembukuanActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:background="@color/white"
+            android:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_invoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/work_sans_bold"
+                android:text="Pembukuan"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/btn_back"
+                android:contentDescription="button back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/monthgruppembukuan" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E1E1E1"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:paddingStart="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:rowCount="1">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/bg_subcontainkonsultasi"
+                    android:backgroundTint="#BCBCBC"
+                    android:text="Harian" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/bg_subcontainkonsultasi"
+                    android:backgroundTint="#BCBCBC"
+                    android:text="Bulanan" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/bg_subcontainkonsultasi"
+                    android:backgroundTint="#BCBCBC"
+                    android:text="Kalender" />
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rowCount="2"
+                android:columnCount="3"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pendapatan"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/work_sans_bold"
+                    />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pengeluaran"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/work_sans_bold"/>
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/work_sans_bold"/>
+
+                <TextView
+                    android:id="@+id/tv_pendapatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp44.700.000"
+                    android:textColor="#1F63BF"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/work_sans_bold"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_pengeleuaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp24.300.000"
+                    android:textColor="#FF0008"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/work_sans_bold"/>
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp20.400.000"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/work_sans_bold"/>
+            </GridLayout>
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="match_parent"
+                android:layout_height="223dp"
+                app:srcCompat="@drawable/iv_listpendapatan" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pembukuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/btn_floatin"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_floatin"
+        android:contentDescription="button floatin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
