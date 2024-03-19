@@ -8,6 +8,7 @@ import com.example.vortex.Koneksi.KoneksiFrag
 import com.example.vortex.Profil.ProfilFragment
 import com.example.vortex.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -17,6 +18,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (FirebaseAuth.getInstance().currentUser == null) {
+//            navigateToLogin()
+            return
+        }
+
+
         replaceFragment(BerandaFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -47,7 +55,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainact,fragment)
         fragmentTransaction.commit()
-
-
     }
+
+
+
 }
