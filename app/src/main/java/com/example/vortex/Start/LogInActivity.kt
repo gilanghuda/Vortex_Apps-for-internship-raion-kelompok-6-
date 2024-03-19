@@ -13,7 +13,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val composeView = ComposeView(this).apply {
             setContent {
-                LoginScreen()
+//                LoginScreen()
             }
         }
         setContentView(composeView)
