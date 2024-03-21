@@ -65,8 +65,8 @@ fun LogInScreen(navController: NavController) {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             context.startActivity(Intent(context, MainActivity::class.java))
+
                         } else {
-                            // Display error message
                             Toast.makeText(context, "Login failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                         }
                     }

@@ -3,10 +3,12 @@ package com.example.vortex.Koneksi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +22,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -36,10 +40,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.vortex.Profil.RowSetting
 import com.example.vortex.Profil.TopBar
 import com.example.vortex.R
-import com.example.vortex.Start.TextComponent
 
 @Composable
 fun DetailKoneksi() {
@@ -129,9 +131,6 @@ fun contentDetail() {
 
             }
 
-//            TextComponent(textValue = "Afids Hakk"/*FirebaseAuth.getInstance().currentUser?.displayName.toString()*/, size = 20.sp)
-            TextComponent(textValue = "Role", size = 16.sp)
-            TextComponent(textValue = "177 Koneksi", size = 12.sp)
             Text(
                 text = "Username",
                 color = Color.Black,
@@ -142,7 +141,35 @@ fun contentDetail() {
                 ),
                 textAlign = TextAlign.Center
             )
+            Text(
+                text = "Role",
+                color = Color.Black,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    fontStyle = FontStyle.Normal,
+                    fontWeight = FontWeight.Medium ,
+                ),
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = "177 Koneksi",
+                color = Color.Black,
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    fontStyle = FontStyle.Normal,
+                    fontWeight = FontWeight.Normal ,
+                ),
+                textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(10.dp))
 
+            Divider(
+                thickness = 5.dp
+            )
+            userDetailKoneksi()
+            Divider(
+                thickness = 5.dp
+            )
             }
 
         }
@@ -151,18 +178,65 @@ fun contentDetail() {
 
 @Composable
 fun userDetailKoneksi() {
-    Column {
-        Text(
-            text = "Detail",
-            color = Color.Black,
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontStyle = FontStyle.Normal,
-                fontWeight = FontWeight.Bold)
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Column {
+            Text(
+                text = "Detail",
+                color = Color.Black,
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontStyle = FontStyle.Normal,
+                    fontWeight = FontWeight.Bold
+                )
             )
-        RowSetting(icon = painterResource(id = R.drawable.ic_perusahaan), textDescription = "Perusahaan nama" )
+            RowDetail(
+                icon = painterResource(id = R.drawable.ic_perusahaan),
+                textDescription = "Perusahaan nama"
+            )
+            RowDetail(
+                icon = painterResource(id = R.drawable.ic_perusahaan),
+                textDescription = "Lokasi"
+            )
+            RowDetail(
+                icon = painterResource(id = R.drawable.ic_perusahaan),
+                textDescription = "Bidang"
+            )
+        }
     }
 }
+
+@Composable
+fun RowDetail(
+    icon: Painter,
+    textDescription: String,
+) {
+    Row (
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 5.dp, vertical = 15.dp)
+            .clickable { }
+    ){
+        Icon(
+            painter = icon,
+            tint = Color.Unspecified,
+            contentDescription = null,
+            modifier = Modifier
+                .weight(2f)
+                .size(20.dp)
+        )
+        Text(
+            modifier = Modifier.weight(6f),
+            textAlign = TextAlign.Start,
+            fontSize = 16.sp,
+            text = textDescription
+
+        )
+    }
+}
+
+
 
 @Preview
 @Composable
