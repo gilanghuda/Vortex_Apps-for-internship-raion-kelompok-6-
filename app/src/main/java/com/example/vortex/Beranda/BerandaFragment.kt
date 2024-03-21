@@ -101,6 +101,10 @@ class BerandaFragment : Fragment() {
             val intentpembukuan = Intent(requireContext(), PembukuanActivity::class.java)
             startActivity(intentpembukuan)
         }
+        binding.btnMessage.setOnClickListener {
+            val intenchat = Intent(requireContext(), ChatActivity::class.java)
+            startActivity(intenchat)
+        }
         return binding.root
     }
 

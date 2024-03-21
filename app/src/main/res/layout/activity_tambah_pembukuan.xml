@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_invoice"
+            android:id="@+id/tv_AdnanHafiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -98,7 +98,7 @@
             android:gravity="center"/>
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/et_tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -120,7 +120,7 @@
             android:gravity="center"/>
 
         <EditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/et_aset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -142,7 +142,7 @@
             android:gravity="center"/>
 
         <EditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/et_kategori"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -164,14 +164,14 @@
             android:gravity="center"/>
 
         <EditText
-            android:id="@+id/editTextText6"
+            android:id="@+id/et_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="4"
             android:layout_columnSpan="4"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="number"
           />
 
         <TextView
@@ -186,7 +186,7 @@
            android:gravity="center"/>
 
         <EditText
-            android:id="@+id/editTextText7"
+            android:id="@+id/et_catatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -218,7 +218,7 @@
             android:backgroundTint="#BDD9FF"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button4"
+            android:id="@+id/btn_tunai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tunai"
@@ -227,7 +227,7 @@
             android:backgroundTint="#BDBDBD"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button5"
+            android:id="@+id/btn_bank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bank"
@@ -236,7 +236,7 @@
             android:backgroundTint="#BDBDBD"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button6"
+            android:id="@+id/btn_kartu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kartu"
@@ -246,7 +246,7 @@
     </GridLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/btn_simpan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"

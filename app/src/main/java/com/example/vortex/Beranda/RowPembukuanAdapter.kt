@@ -18,7 +18,7 @@ class RowPembukuanAdapter constructor(private val getActivity: PembukuanActivity
         return MyViewHolder(view)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvpendapatanrow.text = pembukuanrow[position].tv_rowpendatapan
+        holder.tvkategorirow.text = pembukuanrow[position].tv_rowkategori
         holder.tvpembayaranrow.text = pembukuanrow[position].tv_rowpembayaran
         holder.tvjumlahuangrow.text = pembukuanrow[position].tv_rowjumlahuang
 
@@ -28,7 +28,7 @@ class RowPembukuanAdapter constructor(private val getActivity: PembukuanActivity
         return pembukuanrow.size
     }
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val tvpendapatanrow: TextView = itemView.findViewById(R.id.tv_rowpendapatan)
+        val tvkategorirow: TextView = itemView.findViewById(R.id.tv_rowkategori)
         val tvpembayaranrow: TextView = itemView.findViewById(R.id.tv_rowpembayaran)
         val tvjumlahuangrow: TextView =  itemView.findViewById(R.id.tv_rowjumlahuang)
 
