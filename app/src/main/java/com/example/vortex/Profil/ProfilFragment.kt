@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.vortex.Navigation.NavProfile
 import com.example.vortex.databinding.FragmentProfilBinding
 
 
@@ -17,7 +18,7 @@ class ProfilFragment : Fragment() {
     ): View? {
         binding = FragmentProfilBinding.inflate(inflater, container, false)
         binding.profilcomposeView.setContent {
-            ProfileScreen()
+            NavProfile()
         }
         return binding.root
     }

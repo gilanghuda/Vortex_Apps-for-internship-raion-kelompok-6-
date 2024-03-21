@@ -100,7 +100,7 @@ fun PasswordTextField(
         label = { Text(text = labelValue) },
         leadingIcon = { Icon(painter = icon, contentDescription = labelValue, modifier = Modifier.size(15.dp)) },
         trailingIcon = {
-            val icon = if (passwordVisible.value) R.drawable.ic_hide else R.drawable.ic_view
+            val icon = if (passwordVisible.value) R.drawable.ic_view else R.drawable.ic_hide
             val contentDescription = if (passwordVisible.value) "Hide password" else "Show password"
 
             IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
@@ -122,7 +122,7 @@ fun PasswordTextField(
 fun ButtonSign(textValue: String, onClick: () -> Unit) {
     Button(
         modifier = Modifier.fillMaxWidth(),
-        onClick = { onClick }
+        onClick = {onClick()}
     ) {
         Text(
             modifier = Modifier
@@ -182,52 +182,51 @@ fun SingleClickableTextComponent(clickTextValue: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DropdownMenuBox() {
+fun DropdownMenuBox(selectedBidang: String, onSelectedBidangChange: (String) -> Unit) {
     val context = LocalContext.current
     val bidang = arrayOf("Kuliner", "Teknologi", "Tekstil", "Aaa", "BBBBB")
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(bidang[0]) }
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
+//    Box(modifier = Modifier.fillMaxWidth()) {
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = { expanded = !expanded }
     ) {
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = {
-                expanded = !expanded
-            }
-        ) {
-            OutlinedTextField(
-                value = selectedText,
-                onValueChange = {},
-                readOnly = true,
-                shape = RoundedCornerShape(16.dp),
-                leadingIcon = { Icon(painter = painterResource(id = R.drawable.ic_bidangfix), contentDescription = null, modifier = Modifier.size(15.dp))},
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                modifier = Modifier
-                    .menuAnchor()
-                    .fillMaxWidth()
-            )
+        OutlinedTextField(
+            value = selectedBidang,
+            onValueChange = { onSelectedBidangChange(it) },
+            modifier = Modifier.fillMaxWidth().menuAnchor(),
+            label = { Text("Bidang") },
+            leadingIcon = { Icon(painter = painterResource(id = R.drawable.ic_bidangfix), contentDescription = null) },
+            trailingIcon = {
+                ExposedDropdownMenuDefaults.TrailingIcon(
+                    expanded = expanded
+                )
+            },
+            readOnly = true,  // Keep it readOnly to prevent keyboard input
+            singleLine = true,
+            shape = RoundedCornerShape(16.dp)
 
-            ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
-                bidang.forEach { item ->
-                    DropdownMenuItem(
-                        text = { Text(text = item) },
-                        onClick = {
-                            selectedText = item
-                            expanded = false
-                            Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
-                        }
-                    )
-                }
+        )
+
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            bidang.forEach { item ->
+                DropdownMenuItem(
+                    text = { Text(text = item) },
+                    onClick = {
+                        onSelectedBidangChange(item)
+                        expanded = false
+                        Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                    }
+                )
             }
         }
     }
 }
+
 //TextField(
 //modifier = Modifier.fillMaxWidth(),
 //label = {Text(text = labelValue)},

@@ -1,5 +1,8 @@
 package com.example.vortex.Profil
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -37,30 +40,50 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import com.example.vortex.R
 
-@Preview
-@Composable
-fun editprofileprev() {
-    EditProfile()
-}
 
 @Composable
-fun EditProfile() {
+fun EditProfile(navController: NavController) {
+    val bannerUri = remember { mutableStateOf<Uri?>(null) }
+    val profilePictureUri = remember { mutableStateOf<Uri?>(null) }
+
+    val bannerPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent(),
+        onResult = { uri: Uri? ->
+            bannerUri.value = uri
+        }
+    )
+
+    val profilePictureLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent(),
+        onResult = { uri: Uri? ->
+            profilePictureUri.value = uri
+        }
+    )
+
     Column(modifier = Modifier
         .fillMaxSize()
         .verticalScroll(rememberScrollState())) {
-        TopBar()
-        ContentProfile()
+        TopBar(topText = "Ubah Profil") {
+            // Navigation back action
+        }
+        ContentProfile(bannerUri = bannerUri.value, profilePictureUri = profilePictureUri.value, onBannerClick = {
+            bannerPickerLauncher.launch("image/*")
+        }, onProfilePictureClick = {
+            profilePictureLauncher.launch("image/*")
+        })
     }
 }
 
+
 @Composable
-fun TopBar() {
+fun TopBar(topText: String, onClickAction: () -> Unit) {
     Surface (shadowElevation = 5.dp){
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -74,10 +97,10 @@ fun TopBar() {
                 contentDescription = "Back",
                 modifier = Modifier
                     .size(40.dp)
-                    .clickable { }
+                    .clickable { onClickAction }
             )
             Text(
-                text = "Ubah Profil",
+                text = topText,
                 fontSize = 24.sp,
                 modifier = Modifier
 //                    .weight(1f)
@@ -89,39 +112,50 @@ fun TopBar() {
 }
 
 @Composable
-fun ContentProfile() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-    ){
-        Box(modifier = Modifier
-            .height(127.dp)
-            .fillMaxWidth()) {
-            Image(
-                painter = painterResource(id = R.drawable.img_1),
-                contentDescription = "Banner",
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.FillWidth
-            )
+fun ContentProfile(bannerUri: Uri?, profilePictureUri: Uri?, onBannerClick: () -> Unit, onProfilePictureClick: () -> Unit) {
+    Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
+        // Banner
+        Box(modifier = Modifier.height(127.dp).fillMaxWidth()) {
+            if (bannerUri != null) {
+                Image(
+                    painter = rememberAsyncImagePainter(bannerUri),
+                    contentDescription = "Banner",
+                    modifier = Modifier.fillMaxWidth().clickable { onBannerClick() },
+                    contentScale = ContentScale.FillWidth
+                )
+            } else {
+                // Default banner view
+                Image(
+                    painter = painterResource(id = R.drawable.tes1),
+                    contentDescription = "Banner",
+                    modifier = Modifier.fillMaxWidth().clickable { onBannerClick() },
+                    contentScale = ContentScale.FillWidth
+                )
+            }
         }
 
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 70.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Image(
-                painter = painterResource(id = R.drawable.owi),
-                contentDescription = "Profile Picture",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(120.dp)
-                    .aspectRatio(1f, matchHeightConstraintsFirst = true)
-                    .clip(shape = CircleShape)
-                    .border(2.dp, Color.White, CircleShape)
-            )
+            horizontalAlignment = Alignment.CenterHorizontally) {
+            // Profile picture
+            if (profilePictureUri != null) {
+                Image(
+                    painter = rememberAsyncImagePainter(profilePictureUri),
+                    contentDescription = "Profile Picture",
+                    modifier = Modifier.size(120.dp).aspectRatio(1f, matchHeightConstraintsFirst = true).clip(shape = CircleShape).clickable { onProfilePictureClick() }.border(2.dp, Color.White, CircleShape),
+                    contentScale = ContentScale.Crop
+                )
+            } else {
+                // Default profile picture view
+                Image(
+                    painter = painterResource(id = R.drawable.owi),
+                    contentDescription = "Profile Picture",
+                    modifier = Modifier.size(120.dp).aspectRatio(1f, matchHeightConstraintsFirst = true).clip(shape = CircleShape).clickable { onProfilePictureClick() }.border(2.dp, Color.White, CircleShape),
+                    contentScale = ContentScale.Crop
+                )
+            }
             Button(
                 modifier = Modifier
                     .height(48.dp)
@@ -134,11 +168,6 @@ fun ContentProfile() {
                     fontSize = 12.sp)
             }
             Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "Nama",
-                fontSize = 12.sp,
-                color = Color.Blue
-            )
             
             TransparentTextField(labelValue = "Nama", textValue = "Yusrizal")
             Divider()
@@ -227,3 +256,4 @@ fun DropdownProfileField(
         }
     }
 }
+

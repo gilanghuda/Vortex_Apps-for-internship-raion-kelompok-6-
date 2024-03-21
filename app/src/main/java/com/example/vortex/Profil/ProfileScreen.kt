@@ -22,33 +22,65 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.vortex.Navigation.Screen
 import com.example.vortex.R
+import com.example.vortex.data.FirebaseAuthManager
 
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(navController: NavController) {
+    val context = LocalContext.current
+    val firebaseAuthManager = FirebaseAuthManager(context)
+    var userDetails by remember { mutableStateOf<Map<String, Any>?>(null) }
 
-    Column (
-        modifier = Modifier.fillMaxSize()
+    LaunchedEffect(key1 = true) {
+        firebaseAuthManager.getUserDetails { details ->
+            userDetails = details
+        }
+    }
+
+    val name = userDetails?.get("nama")?.toString() ?: "Loading..."
+    val email = userDetails?.get("email")?.toString() ?: "Loading..."
+    Box (modifier = Modifier.fillMaxSize()
     ){
-        Spacer(modifier = Modifier.height(20.dp))
-        ProfileBar(
-            name = "Budi Susanto Warhamto",
-            email = "budisusantowarhammto@gmail.com",
-        )
-        Spacer(modifier = Modifier.height(35.dp))
-        SettingBox(modifier = Modifier.align(Alignment.CenterHorizontally))
+        Image(
+            painter = painterResource(id = R.drawable.bg_profile),
+            contentDescription =null,
+//            alignment = Alignment.TopCenter,
+            modifier = Modifier.fillMaxSize()
+            )
+        Column (
+            modifier = Modifier.fillMaxSize()
+        ){
+            Spacer(modifier = Modifier.height(20.dp))
+            ProfileBar(
+                name = name,
+                email = email,
+                onProfileClick = {
+                    navController.navigate(Screen.EditProfileRoute.route)
+                }
+            )
+            Spacer(modifier = Modifier.height(35.dp))
+            SettingBox(modifier = Modifier.align(Alignment.CenterHorizontally))
+        }
     }
 }
 
@@ -57,6 +89,7 @@ fun ProfileScreen() {
 fun ProfileBar(
     name: String,
     email: String,
+    onProfileClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row (
@@ -65,7 +98,7 @@ fun ProfileBar(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 35.dp)
-            .clickable { }
+            .clickable { onProfileClick }
     ){
         RoundImage(
             image = painterResource(id = R.drawable.megachan),
@@ -83,7 +116,7 @@ fun ProfileBar(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Left
+                    textAlign = TextAlign.Left,
                 )
                 Spacer(modifier = Modifier.height(1.dp))
                 Text(
@@ -102,7 +135,7 @@ fun ProfileBar(
             modifier = Modifier
                 .weight(2f)
                 .size(35.dp)
-                .clickable { }
+                .clickable { onProfileClick }
             )
     }
 }
@@ -131,8 +164,6 @@ fun SettingBox(
        contentAlignment = Alignment.CenterStart,
        modifier = Modifier
            .padding(horizontal = 25.dp)
-//           .clip(RoundedCornerShape(16.dp))
-//           .shadow(1.dp)
            .border(width = 1.dp, color = Color.LightGray, shape = RoundedCornerShape(16.dp))
 
 

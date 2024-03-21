@@ -30,11 +30,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -42,15 +48,28 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import com.example.vortex.R
+import com.example.vortex.Start.User
+import com.example.vortex.data.FirebaseAuthManager
 
 @Composable
 fun Koneksi(navController: NavController) {
+    val context = LocalContext.current
+    val firebaseAuthManager = FirebaseAuthManager(context)
+    var users by remember { mutableStateOf<List<User>>(emptyList()) }
+
+    LaunchedEffect(key1 = Unit) {
+        firebaseAuthManager.fetchUsers { fetchedUsers ->
+            users = fetchedUsers
+        }
+    }
+
     Scaffold(
         topBar = { TopKoneksi() },
         content = { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
-                RekomendasiColumn(partners)
+                RekomendasiColumn(users = users)
             }
         }
     )
@@ -86,19 +105,38 @@ fun TopKoneksi() {
 }
 
 @Composable
-fun RecommendationRow(recommendation: List<Recommendation>) {
+fun RecommendationRow(users: List<com.example.vortex.Start.User>) {
     LazyRow(
         modifier = Modifier.padding(horizontal = 10.dp),
         horizontalArrangement = Arrangement.spacedBy(20.dp)
     ){
-        items(recommendations) { recommendation ->
-            TerverifikasiItem(recommendation = recommendation)
+        items(users) { user ->
+            TerverifikasiItem(user = user)
         }
     }
 }
 
 @Composable
-fun TerverifikasiItem(recommendation: Recommendation) {
+fun UserProfileImage(profilePictureUrl: String?) {
+    val placeholder = painterResource(id = R.drawable.megachan)
+    val painter = if (profilePictureUrl.isNullOrEmpty()) {
+        placeholder
+    } else {
+        rememberAsyncImagePainter(model = profilePictureUrl, placeholder = placeholder)
+    }
+
+    Image(
+        painter = painter,
+        contentDescription = "Profile Picture",
+        modifier = Modifier
+            .size(75.dp)
+            .clip(CircleShape),
+        contentScale = ContentScale.Crop
+    )
+}
+
+@Composable
+fun TerverifikasiItem(user: com.example.vortex.Start.User) {
     Card(
         modifier = Modifier
             .width(200.dp)
@@ -115,34 +153,27 @@ fun TerverifikasiItem(recommendation: Recommendation) {
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(bottom = 8.dp)
                 ) {
-                    Image(
-                        painter = painterResource(id = recommendation.image),
-                        contentDescription = "${recommendation.name}'s Profile Picture",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .size(75.dp)
-                            .clip(shape = CircleShape)
-                    )
+                    UserProfileImage(profilePictureUrl = user.profilePictureUrl)
                     Spacer(modifier = Modifier.width(8.dp))
                     Column(
                         modifier = Modifier
                             .padding(start = 8.dp),
                     ) {
                         Text(
-                            text = recommendation.name,
+                            text = user.name,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
                         RoleButton(
-                            role = recommendation.role,
+                            role = user.role,
                             backgroundColor = Color.LightGray,
                             textColor = Color.Black
                         )
 
                         RoleButton(
-                            role = recommendation.sector,
+                            role = user.bidang,
                             backgroundColor = Color.LightGray,
                             textColor = Color.Black
                         )
@@ -150,14 +181,14 @@ fun TerverifikasiItem(recommendation: Recommendation) {
                 }
             }
             Text(
-                text = recommendation.description,
+                text = user.description,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 14.sp
             )
             Spacer(modifier = Modifier.weight(1f))
             LocationStyle(
-                location = recommendation.location,
+                location = user.location,
                 backgroundColor = Color.Black,
                 textColor = Color.White
             )
@@ -166,23 +197,23 @@ fun TerverifikasiItem(recommendation: Recommendation) {
 }
 
 @Composable
-fun RekomendasiColumn(partners: List<Partner>) {
+fun RekomendasiColumn(users: List<com.example.vortex.Start.User>) {
     LazyColumn(
         modifier = Modifier.padding(bottom = 50.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         item { BackgroundImg() }
+        item { HeaderText(text = "Terverifikasi") }
+        item { RecommendationRow(users = users) }
         item { HeaderText(text = "Rekomendasi") }
-        item { RecommendationRow(recommendation = recommendations) }
-        item { HeaderText(text = "Partner") }
-        items(partners) { partner ->
-            RekomendasiItem(partner = partner)
+        items(users) { user ->
+            RekomendasiItem(user = user)
         }
     }
 }
 
 @Composable
-fun RekomendasiItem(partner: Partner) {
+fun RekomendasiItem(user: com.example.vortex.Start.User) {
     Card(
         modifier = Modifier
             .height(140.dp)
@@ -196,14 +227,7 @@ fun RekomendasiItem(partner: Partner) {
             modifier = Modifier.padding(all = 10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                painter = painterResource(id = partner.image),
-                contentDescription = "${partner.name}'s Profile Picture",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(65.dp)
-                    .clip(CircleShape)
-            )
+            UserProfileImage(profilePictureUrl = user.profilePictureUrl)
             Spacer(modifier = Modifier.width(8.dp))
             Column(
                 modifier = Modifier
@@ -211,26 +235,26 @@ fun RekomendasiItem(partner: Partner) {
                     .padding(start = 8.dp)
             ) {
                 Text(
-                    text = partner.name,
+                    text = user.name,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 16.sp
                 )
                 RoleButton(
-                    role = partner.role,
+                    role = user.role,
                     backgroundColor = Color.LightGray,
                     textColor = Color.Black
                 )
                 Text(
-                    text = partner.description,
+                    text = user.description,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 12.sp
                 )
 
                 LocationStyle(
-                    location = partner.location,
+                    location = user.location,
                     backgroundColor = Color.Black,
                     textColor = Color.White
                 )

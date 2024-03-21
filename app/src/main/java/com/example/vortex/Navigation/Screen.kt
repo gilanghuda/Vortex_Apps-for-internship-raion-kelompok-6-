@@ -6,5 +6,10 @@ sealed class Screen (val route: String){
     object KoneksiRoute : Screen(route = "Koneksi")
     object DetailKoneksiRoute : Screen(route = "DetailKoneksi")
     object AuthRoute : Screen(route = "Auth")
+    object ChooseRoleRoute : Screen(route = "ChooseRole")
+
+
+    object ProfileRoute : Screen(route = "Profile")
+    object EditProfileRoute : Screen(route = "EditProfile")
 
 }

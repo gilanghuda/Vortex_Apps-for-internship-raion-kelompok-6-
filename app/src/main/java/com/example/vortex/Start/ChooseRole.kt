@@ -23,13 +23,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.vortex.Navigation.Screen
 import com.example.vortex.R
 
 @Composable
-fun ChooseRole() {
+fun ChooseRole(navController: NavController) {
     Box (
         modifier = Modifier
             .fillMaxSize()
@@ -52,7 +53,7 @@ fun ChooseRole() {
                     .height(140.dp)
                     .fillMaxWidth()
                     .padding(horizontal = 10.dp, vertical = 5.dp)
-                    .clickable { /*TODO*/ },
+                    .clickable { navController.navigate("${Screen.SignInRoute.route}/Investor")},
                 shape = RoundedCornerShape(10.dp),
                 elevation = CardDefaults.cardElevation(5.dp)
             ) {
@@ -93,7 +94,7 @@ fun ChooseRole() {
                     .height(140.dp)
                     .fillMaxWidth()
                     .padding(horizontal = 10.dp, vertical = 5.dp)
-                    .clickable { /*TODO*/ },
+                    .clickable { navController.navigate("${Screen.SignInRoute.route}/Pengusaha") },
                 shape = RoundedCornerShape(10.dp),
                 elevation = CardDefaults.cardElevation(5.dp)
             ) {
@@ -134,8 +135,3 @@ fun ChooseRole() {
     }
 }
 
-@Preview
-@Composable
-fun chooseroleprev() {
-    ChooseRole()
-}
