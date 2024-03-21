@@ -76,7 +76,8 @@ fun ProfileScreen(navController: NavController) {
                 email = email,
                 onProfileClick = {
                     navController.navigate(Screen.EditProfileRoute.route)
-                }
+                },
+                modifier = Modifier.clickable { navController.navigate(Screen.EditProfileRoute.route) }
             )
             Spacer(modifier = Modifier.height(35.dp))
             SettingBox(modifier = Modifier.align(Alignment.CenterHorizontally))
@@ -98,7 +99,7 @@ fun ProfileBar(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 35.dp)
-            .clickable { onProfileClick }
+            .clickable { onProfileClick() }
     ){
         RoundImage(
             image = painterResource(id = R.drawable.megachan),
@@ -135,7 +136,7 @@ fun ProfileBar(
             modifier = Modifier
                 .weight(2f)
                 .size(35.dp)
-                .clickable { onProfileClick }
+                .clickable { onProfileClick() }
             )
     }
 }
